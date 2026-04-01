@@ -11,14 +11,14 @@
 
 ## 🎯 The Problem
 
-Physicians spend **12+ hours per week** on prior authorization paperwork — 43 requests each, costing **$31 billion annually** in administrative burden. Manual PA processing leads to:
+Medical practices dedicate **nearly 20 hours per week of staff time** to prior authorization paperwork, costing **$2,800 to $51,000 per physician annually** according to Health Affairs research (2009-2012). Manual PA processing leads to:
 
 - ❌ 30-50% first-pass denial rates
 - ❌ Treatment delays of 7-14 days
 - ❌ Physician burnout and staff turnover
 - ❌ Compliance challenges with new regulations (TX SB 490, AZ HB 2417, MD HB 1174)
 
-**AuthClear** uses AI to automate 90% of PA documentation while keeping physicians in control.
+**AuthClear** automates 90% of PA documentation using Claude AI, saving an average of **$25,000 per physician per year** while keeping physicians in control.
 
 ---
 
@@ -58,7 +58,7 @@ Physicians spend **12+ hours per week** on prior authorization paperwork — 43 
 
 **Key Features:**
 - ✅ **Human-in-the-loop**: No auto-approval, physician always reviews
-- ✅ **AWS Bedrock**: Claude 3 Haiku for clinical reasoning
+- ✅ **Claude 3 Haiku (AWS Bedrock)**: Fast, cost-effective clinical reasoning
 - ✅ **9 synthetic patients**: Diabetes, RA, COPD, breast cancer, lupus, etc.
 - ✅ **11 medications**: Ozempic, Herceptin, Spiriva, Benlysta, etc.
 - ✅ **6 payers**: Generic, BCBS, Medicare, Medicaid, Aetna, United
@@ -76,8 +76,8 @@ Physicians spend **12+ hours per week** on prior authorization paperwork — 43 
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/authclear
-cd authclear
+git clone https://github.com/Marianooss/authclear-priorauth-copilot
+cd authclear-priorauth-copilot
 
 # Install dependencies
 pip install -r requirements.txt

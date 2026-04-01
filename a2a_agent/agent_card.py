@@ -101,8 +101,8 @@ def get_agent_card() -> dict:
         },
         "contact": {
             "author": "AuthClear Team",
-            "repository": "https://github.com/yourusername/authclear",
-            "support": "https://github.com/yourusername/authclear/issues"
+            "repository": "https://github.com/Marianooss/authclear-priorauth-copilot",
+            "support": "https://github.com/Marianooss/authclear-priorauth-copilot/issues"
         },
         "marketplace": {
             "category": "healthcare",
