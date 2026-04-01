@@ -85,3 +85,34 @@ node_modules/
 
 # Synthea JAR (too large for GitHub)
 synthea_temp/
+
+# Development documentation (keep local only)
+*_STATUS*.md
+*_GUIDE*.md
+*_CHECKLIST*.md
+VIDEO_*.md
+SESSION_*.md
+BUGS_*.md
+HOUR_*.md
+DEMO_*.md
+
+# Test files (root level only - keep tests in test folders)
+/test_*.py
+/demo_*.py
+
+# Video assets
+video_assets/
+
+# Batch scripts
+*.bat
+
+# Claude config
+.claude/
+
+# Subtitles
+*.srt
+
+# Development docs
+cot_react.md
+folderstructure.md
+structure.md
