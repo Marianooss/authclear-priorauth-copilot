@@ -27,6 +27,9 @@ COPY shared/ ./shared/
 RUN useradd -r -u 1001 authclear
 USER authclear
 
+# Set PYTHONPATH so Python can find a2a_agent and shared modules
+ENV PYTHONPATH=/app
+
 EXPOSE 8000
 
 HEALTHCHECK --interval=10s --timeout=5s --retries=3 \

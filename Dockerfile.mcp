@@ -34,6 +34,9 @@ COPY shared/ ./shared/
 RUN useradd -r -u 1001 authclear
 USER authclear
 
+# Set PYTHONPATH so Python can find mcp_server module
+ENV PYTHONPATH=/app
+
 EXPOSE 8001
 
 # Health check
