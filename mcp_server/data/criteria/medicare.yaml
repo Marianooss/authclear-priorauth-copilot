@@ -1,0 +1,40 @@
+# Medicare Prior Authorization Criteria
+# More stringent criteria for Medicare coverage
+
+J0173:  # Semaglutide (Ozempic)
+  description: "Semaglutide injection for type 2 diabetes"
+  required_diagnoses:
+    - "E11.9 - Type 2 diabetes mellitus"
+  required_labs:
+    - "HbA1c >= 8.0% within last 90 days"  # Higher threshold for Medicare
+    - "BMI >= 27 kg/m2"
+    - "Documented cardiovascular disease OR >= 2 CV risk factors"
+  required_trials:
+    - "Metformin trial >= 6 months"
+    - "Sulfonylurea trial >= 6 months"
+    - "At least one other oral agent trial >= 3 months"
+  documentation_required:
+    - "Clinical notes documenting diabetes management"
+    - "Lab results (HbA1c, BMI, lipid panel)"
+    - "Medication history showing previous trials with dates"
+    - "Documentation of CV disease or risk factors"
+  typical_approval_duration: "6 months"
+
+J1438:  # Etanercept (Enbrel)
+  description: "Etanercept injection for rheumatoid arthritis"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis with positive serology"
+  required_labs:
+    - "RF positive OR anti-CCP positive"
+    - "ESR >= 28 mm/hr OR CRP >= 1.0 mg/dL"
+    - "TB screening negative within 12 months"
+    - "Hepatitis B screening"
+  required_trials:
+    - "Methotrexate trial >= 6 months at therapeutic dose"
+    - "At least TWO other DMARDs >= 3 months each"
+  documentation_required:
+    - "Rheumatology consult note within 6 months"
+    - "Lab results (RF, anti-CCP, ESR/CRP)"
+    - "TB and Hepatitis B screening"
+    - "Detailed medication history with dosages and durations"
+  typical_approval_duration: "12 months"

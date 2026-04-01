@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>AuthClear - Live Demo Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .timeline {
+            position: absolute;
+            left: 100px;
+            top: 150px;
+            bottom: 150px;
+            width: 4px;
+            background: linear-gradient(180deg, #667eea 0%, #ffd700 100%);
+            box-shadow: 0 0 20px #667eea;
+        }
+
+        .step {
+            position: absolute;
+            left: 150px;
+            right: 100px;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, #1e1e3f 0%, #2d2d5f 100%);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .step.active {
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-number {
+            position: absolute;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            box-shadow: 0 0 30px #667eea;
+            border: 4px solid #0f0f23;
+        }
+
+        .step:nth-child(1) { top: 50px; animation-delay: 0s; }
+        .step:nth-child(2) { top: 220px; animation-delay: 2s; }
+        .step:nth-child(3) { top: 390px; animation-delay: 4s; }
+        .step:nth-child(4) { top: 560px; animation-delay: 6s; }
+        .step:nth-child(5) { top: 730px; animation-delay: 8s; }
+
+        .step-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .step-content {
+            font-size: 20px;
+            color: #c0c0d0;
+            line-height: 1.5;
+        }
+
+        .step-data {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 18px;
+            color: #00ff88;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 100px;
+            background: linear-gradient(90deg, #1a1a3e 0%, #2d1b4e 100%);
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            font-size: 52px;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 26px;
+            color: #a0a0c0;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 100px;
+            background: rgba(102, 126, 234, 0.1);
+            border-top: 2px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .confidence-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .confidence-label {
+            font-size: 22px;
+            color: #9f9fbf;
+        }
+
+        .bar-container {
+            width: 300px;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #667eea;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #00ff88 100%);
+            width: 0%;
+            animation: fillBar 10s forwards;
+            box-shadow: 0 0 20px #00ff88;
+        }
+
+        @keyframes fillBar {
+            to { width: 90%; }
+        }
+
+        .confidence-value {
+            font-size: 28px;
+            color: #00ff88;
+            font-weight: 700;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #667eea;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-1080px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 70%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 90%; animation-delay: 8s; }
+    </style>
+</head>
+<body>
+    <!-- Background particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="header">
+        <h1>AuthClear: Live Processing Flow</h1>
+        <p>Patient: Maria González • Medication: Ozempic (semaglutide)</p>
+    </div>
+
+    <div class="timeline"></div>
+
+    <div class="step active">
+        <div class="step-number">1</div>
+        <div class="step-title">📋 Load Patient FHIR Bundle</div>
+        <div class="step-content">
+            A2A Agent receives FHIR R4 bundle from EHR system
+        </div>
+        <div class="step-data">
+            Patient: <span class="highlight">Maria González</span>, 50F<br>
+            Diagnoses: <span class="highlight">E11.9</span> (Type 2 DM)<br>
+            Medications: Metformin 1000mg BID, Glipizide 10mg<br>
+            Labs: HbA1c <span class="highlight">8.9%</span>, BMI <span class="highlight">34.2</span>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-title">🔍 Call MCP Server: Resolve Codes</div>
+        <div class="step-content">
+            Agent calls MCP tools to translate clinical codes
+        </div>
+        <div class="step-data">
+            resolve_icd10(<span class="highlight">"E11.9"</span>) → SNOMED <span class="highlight">44054006</span><br>
+            lookup_rxnorm(<span class="highlight">"Ozempic"</span>) → RxNorm <span class="highlight">2200660</span><br>
+            Drug class: <span class="highlight">GLP-1 receptor agonist</span>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-title">📊 Retrieve Prior Auth Criteria</div>
+        <div class="step-content">
+            MCP Server returns payer requirements for semaglutide
+        </div>
+        <div class="step-data">
+            get_prior_auth_criteria(<span class="highlight">"J0173"</span>, "generic")<br>
+            Required: HbA1c ><span class="highlight">7.5%</span>, BMI ><span class="highlight">30</span><br>
+            Trials: Metformin <span class="highlight">>3 months</span> + second agent
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-title">🤖 Claude Reasoning: Evaluate Criteria</div>
+        <div class="step-content">
+            Agent analyzes patient data against requirements using LLM
+        </div>
+        <div class="step-data">
+            ✓ HbA1c 8.9% > 7.5% → <span class="highlight">MET</span><br>
+            ✓ BMI 34.2 > 30 → <span class="highlight">MET</span><br>
+            ✓ Metformin >6 months → <span class="highlight">MET</span><br>
+            ✓ Glipizide >3 months → <span class="highlight">MET</span>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-title">✅ Generate Prior Auth Draft</div>
+        <div class="step-content">
+            Structured authorization ready for physician review
+        </div>
+        <div class="step-data">
+            Confidence: <span class="highlight">90%</span> (HIGH)<br>
+            All criteria: <span class="highlight">MET</span> (4/4)<br>
+            Status: <span class="highlight">READY FOR HUMAN REVIEW</span> ✓<br>
+            Time saved: <span class="highlight">~15 minutes</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="confidence-bar">
+            <span class="confidence-label">Overall Confidence:</span>
+            <div class="bar-container">
+                <div class="bar-fill"></div>
+            </div>
+            <span class="confidence-value">90%</span>
+        </div>
+        <div style="color: #ffd700; font-size: 22px; font-weight: 600;">
+            🔒 Human-in-the-Loop: REQUIRED
+        </div>
+    </div>
+
+    <script>
+        // Animate steps sequentially
+        const steps = document.querySelectorAll('.step');
+        steps.forEach((step, index) => {
+            setTimeout(() => {
+                step.classList.add('active');
+            }, index * 2000);
+        });
+    </script>
+</body>
+</html>

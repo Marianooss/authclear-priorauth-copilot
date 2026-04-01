@@ -1,0 +1,90 @@
+[tool.poetry]
+name = "authclear"
+version = "1.0.0"
+description = "Prior Auth Copilot + FHIR Terminology Engine — Agents Assemble Hackathon"
+authors = ["AuthClear Dev <dev@authclear.ai>"]
+readme = "README.md"
+packages = [
+    { include = "mcp_server" },
+    { include = "a2a_agent" },
+    { include = "shared" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+# MCP Server
+fastmcp = ">=2.0"
+
+# A2A Agent
+fastapi = ">=0.115"
+uvicorn = { extras = ["standard"], version = ">=0.32" }
+
+# LLM
+anthropic = ">=0.40"
+
+# HTTP
+httpx = ">=0.27"
+tenacity = ">=9.0"          # Retry decorator
+
+# FHIR
+fhir-resources = ">=7.1"
+
+# Data / Models
+pydantic = ">=2.9"
+pydantic-settings = ">=2.6"
+cachetools = ">=5.5"
+pyyaml = ">=6.0"
+
+# Logging
+structlog = ">=24.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0"
+pytest-asyncio = ">=0.24"
+pytest-cov = ">=6.0"
+respx = ">=0.21"            # Mock httpx
+httpx = ">=0.27"            # Also needed for TestClient
+anyio = ">=4.0"
+ruff = ">=0.7"              # Linter + formatter
+mypy = ">=1.13"
+
+[tool.poetry.scripts]
+mcp-server = "mcp_server.server:main"
+a2a-agent = "a2a_agent.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# ── PYTEST ────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["mcp_server/tests", "a2a_agent/tests"]
+addopts = "--tb=short -q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+# ── COVERAGE ─────────────────────────────────────────────────────────────
+[tool.coverage.run]
+source = ["mcp_server", "a2a_agent", "shared"]
+omit = ["*/tests/*", "*/migrations/*"]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+
+# ── RUFF ─────────────────────────────────────────────────────────────────
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]
+ignore = ["B008"]  # FastAPI Depends() pattern
+
+# ── MYPY ─────────────────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true

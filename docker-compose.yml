@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  # ── MCP Server (Submission A) ────────────────────────────────────
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    container_name: authclear-mcp
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT_MCP=8001
+      - NLM_API_KEY=${NLM_API_KEY:-}
+      - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
+      - ENVIRONMENT=development
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  # ── A2A Agent (Submission B) ─────────────────────────────────────
+  a2a-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: authclear-agent
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT_AGENT=8000
+      - MCP_SERVER_URL=http://mcp-server:8001
+      - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
+      - ENVIRONMENT=development
+    env_file:
+      - .env
+    depends_on:
+      mcp-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  # ── ngrok (expose local to Prompt Opinion Marketplace) ──────────
+  # Uncomment when testing Prompt Opinion integration locally
+  # ngrok:
+  #   image: ngrok/ngrok:latest
+  #   command: start --all --config /etc/ngrok.yml
+  #   volumes:
+  #     - ./ngrok.yml:/etc/ngrok.yml
+  #   environment:
+  #     - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+  #   ports:
+  #     - "4040:4040"  # ngrok UI
+  #   depends_on:
+  #     - mcp-server
+  #     - a2a-agent

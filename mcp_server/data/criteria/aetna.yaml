@@ -1,0 +1,35 @@
+# Aetna Prior Authorization Criteria
+# Private insurer - moderate criteria
+
+J0173:  # Semaglutide (Ozempic)
+  description: "Semaglutide injection for type 2 diabetes"
+  required_diagnoses:
+    - "E11.9 - Type 2 diabetes mellitus"
+  required_labs:
+    - "HbA1c >= 7.5% within last 90 days"
+    - "BMI documented"
+  required_trials:
+    - "Metformin trial >= 3 months"
+    - "Second oral agent trial >= 3 months"
+  documentation_required:
+    - "Clinical notes"
+    - "Lab results (HbA1c, BMI)"
+    - "Medication history"
+  typical_approval_duration: "12 months"
+
+J1438:  # Etanercept (Enbrel)
+  description: "Etanercept injection for rheumatoid arthritis"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis"
+  required_labs:
+    - "RF or anti-CCP positive"
+    - "Inflammatory markers elevated"
+    - "TB screening negative"
+  required_trials:
+    - "Methotrexate trial >= 3 months"
+    - "At least one other DMARD"
+  documentation_required:
+    - "Specialist evaluation"
+    - "Lab results"
+    - "Treatment history"
+  typical_approval_duration: "12 months"

@@ -1,0 +1,38 @@
+[build]
+builder = "DOCKERFILE"
+
+# Railway deploys each service separately.
+# Service 1: authclear-mcp  → Dockerfile.mcp
+# Service 2: authclear-agent → Dockerfile.agent
+
+[[services]]
+name = "authclear-mcp"
+dockerfile = "Dockerfile.mcp"
+
+[services.deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[services.variables]
+PORT = "8001"
+ENVIRONMENT = "production"
+LOG_LEVEL = "INFO"
+
+[[services]]
+name = "authclear-agent"
+dockerfile = "Dockerfile.agent"
+
+[services.deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[services.variables]
+PORT = "8000"
+ENVIRONMENT = "production"
+LOG_LEVEL = "INFO"
+# MCP_SERVER_URL must be set via Railway dashboard after mcp service is deployed
+# Example: MCP_SERVER_URL=https://authclear-mcp.railway.app

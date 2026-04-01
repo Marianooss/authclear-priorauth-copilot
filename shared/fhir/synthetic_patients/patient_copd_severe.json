@@ -1,0 +1,100 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-copd-severe",
+        "name": [{"given": ["Richard"], "family": "Davis"}],
+        "gender": "male",
+        "birthDate": "1952-03-10"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-copd",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "code": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/icd-10", "code": "J44.1", "display": "Chronic obstructive pulmonary disease with acute exacerbation"}],
+          "text": "Severe COPD, GOLD Stage 3"
+        },
+        "subject": {"reference": "Patient/patient-copd-severe"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-fev1",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "20150-9", "display": "FEV1"}]},
+        "subject": {"reference": "Patient/patient-copd-severe"},
+        "valueQuantity": {"value": 42, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"},
+        "interpretation": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "L", "display": "Low"}]}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-fvc",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "20151-7", "display": "FVC"}]},
+        "subject": {"reference": "Patient/patient-copd-severe"},
+        "valueQuantity": {"value": 58, "unit": "%"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-smoking-history",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "72166-2", "display": "Tobacco smoking status"}]},
+        "subject": {"reference": "Patient/patient-copd-severe"},
+        "valueCodeableConcept": {"text": "Former smoker, 45 pack-years"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-exacerbations",
+        "status": "final",
+        "code": {"text": "COPD exacerbations in past year"},
+        "subject": {"reference": "Patient/patient-copd-severe"},
+        "valueInteger": 3,
+        "note": [{"text": "3 exacerbations requiring ER visits in past 12 months"}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "med-albuterol",
+        "status": "active",
+        "medicationCodeableConcept": {"coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "435", "display": "albuterol"}], "text": "Albuterol inhaler PRN"},
+        "subject": {"reference": "Patient/patient-copd-severe"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "med-advair",
+        "status": "active",
+        "medicationCodeableConcept": {"text": "Advair Diskus 250/50 BID"},
+        "subject": {"reference": "Patient/patient-copd-severe"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-request-spiriva",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "251300", "display": "tiotropium"}],
+          "text": "Spiriva Respimat (tiotropium) 2.5mcg daily"
+        },
+        "subject": {"reference": "Patient/patient-copd-severe"}
+      }
+    }
+  ]
+}

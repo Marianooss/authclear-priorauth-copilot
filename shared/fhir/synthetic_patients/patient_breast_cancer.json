@@ -1,0 +1,103 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-breast-cancer",
+        "name": [{"given": ["Linda"], "family": "Thompson"}],
+        "gender": "female",
+        "birthDate": "1968-08-22"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-breast-cancer",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "code": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/icd-10", "code": "C50.911", "display": "Malignant neoplasm of unspecified site of right female breast"}],
+          "text": "HER2+ Invasive Ductal Carcinoma, Stage IIB"
+        },
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "onsetDateTime": "2025-11-15"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-her2-status",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "48676-1", "display": "HER2 [Presence] in Tissue by Immunohistochemistry"}]},
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "10828004", "display": "Positive"}], "text": "HER2 3+ (Positive)"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-er-status",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "16112-5", "display": "Estrogen receptor [Interpretation] in Tissue"}]},
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "valueCodeableConcept": {"text": "ER+ (80%)"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-pr-status",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "16113-3", "display": "Progesterone receptor [Interpretation] in Tissue"}]},
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "valueCodeableConcept": {"text": "PR+ (70%)"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-tumor-size",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "21889-1", "display": "Size Tumor"}]},
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "valueQuantity": {"value": 3.2, "unit": "cm"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-lvef",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "10230-1", "display": "Left ventricular Ejection fraction"}]},
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "effectiveDateTime": "2026-03-20",
+        "valueQuantity": {"value": 62, "unit": "%"},
+        "note": [{"text": "Echocardiogram shows normal left ventricular function, LVEF 62%, no contraindications for trastuzumab therapy"}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "proc-chemotherapy",
+        "status": "completed",
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "367336001", "display": "Chemotherapy"}], "text": "AC-T chemotherapy (Adriamycin/Cytoxan, then Taxol)"},
+        "subject": {"reference": "Patient/patient-breast-cancer"},
+        "performedPeriod": {"start": "2025-12-01", "end": "2026-03-15"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-request-herceptin",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "224905", "display": "trastuzumab"}],
+          "text": "Herceptin (trastuzumab) 440mg IV q3weeks"
+        },
+        "subject": {"reference": "Patient/patient-breast-cancer"}
+      }
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>AuthClear Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .container {
+            width: 1600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .box {
+            width: 650px;
+            height: 500px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .box-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .box-subtitle {
+            font-size: 32px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .tools {
+            font-size: 24px;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
+
+        .tools li {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .arrow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            text-align: center;
+        }
+
+        .arrow svg {
+            width: 150px;
+            height: 150px;
+        }
+
+        .arrow-text {
+            font-size: 28px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #ffd700;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            font-size: 36px;
+            color: #ffd700;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div>
+                <div class="box-title">MCP Server</div>
+                <div class="box-subtitle">FHIR Terminology Engine</div>
+            </div>
+            <ul class="tools">
+                <li>resolve_icd10()</li>
+                <li>lookup_rxnorm()</li>
+                <li>get_loinc_code()</li>
+                <li>check_drug_interactions()</li>
+                <li>get_prior_auth_criteria()</li>
+            </ul>
+        </div>
+
+        <div class="arrow">
+            <svg viewBox="0 0 24 24" fill="#ffd700">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                <path d="M16 6v12h2V6h-2z"/>
+            </svg>
+            <div class="arrow-text">MCP Tool Calls</div>
+        </div>
+
+        <div class="box">
+            <div>
+                <div class="box-title">A2A Agent</div>
+                <div class="box-subtitle">Prior Auth Copilot</div>
+            </div>
+            <ul class="tools">
+                <li>Parse FHIR bundles</li>
+                <li>Extract clinical data</li>
+                <li>Call MCP tools</li>
+                <li>Reason over criteria</li>
+                <li>Generate auth drafts</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        📍 Prompt Opinion Marketplace
+    </div>
+</body>
+</html>

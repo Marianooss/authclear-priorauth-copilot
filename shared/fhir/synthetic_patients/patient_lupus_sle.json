@@ -1,0 +1,114 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-lupus-sle",
+        "name": [{"given": ["Angela"], "family": "Rodriguez"}],
+        "gender": "female",
+        "birthDate": "1992-06-18"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-sle",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "code": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/icd-10", "code": "M32.10", "display": "Systemic lupus erythematosus, organ or system involvement unspecified"}],
+          "text": "Systemic Lupus Erythematosus (SLE) with renal involvement"
+        },
+        "subject": {"reference": "Patient/patient-lupus-sle"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ana",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "5048-9", "display": "Antinuclear antibody"}]},
+        "subject": {"reference": "Patient/patient-lupus-sle"},
+        "valueCodeableConcept": {"text": "Positive, titer 1:640 (speckled pattern)"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-anti-dsdna",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "31348-8", "display": "Anti-double stranded DNA antibody"}]},
+        "subject": {"reference": "Patient/patient-lupus-sle"},
+        "valueQuantity": {"value": 185, "unit": "IU/mL"},
+        "interpretation": [{"text": "Markedly elevated"}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-c3",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "4485-9", "display": "Complement C3"}]},
+        "subject": {"reference": "Patient/patient-lupus-sle"},
+        "valueQuantity": {"value": 62, "unit": "mg/dL"},
+        "referenceRange": [{"low": {"value": 90}, "high": {"value": 180}}],
+        "interpretation": [{"text": "Low"}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-c4",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "4498-2", "display": "Complement C4"}]},
+        "subject": {"reference": "Patient/patient-lupus-sle"},
+        "valueQuantity": {"value": 8, "unit": "mg/dL"},
+        "referenceRange": [{"low": {"value": 10}, "high": {"value": 40}}],
+        "interpretation": [{"text": "Low"}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-proteinuria",
+        "status": "final",
+        "code": {"coding": [{"system": "http://loinc.org", "code": "2889-4", "display": "Protein [Mass/volume] in Urine"}]},
+        "subject": {"reference": "Patient/patient-lupus-sle"},
+        "valueQuantity": {"value": 850, "unit": "mg/dL"},
+        "note": [{"text": "Lupus nephritis Class III"}]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "med-hydroxychloroquine",
+        "status": "active",
+        "medicationCodeableConcept": {"coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "5521", "display": "hydroxychloroquine"}], "text": "Plaquenil 400mg daily"},
+        "subject": {"reference": "Patient/patient-lupus-sle"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "med-mycophenolate",
+        "status": "active",
+        "medicationCodeableConcept": {"text": "Mycophenolate mofetil 1000mg BID (inadequate response)"},
+        "subject": {"reference": "Patient/patient-lupus-sle"}
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-request-benlysta",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "1092249", "display": "belimumab"}],
+          "text": "Benlysta (belimumab) 10mg/kg IV monthly"
+        },
+        "subject": {"reference": "Patient/patient-lupus-sle"}
+      }
+    }
+  ]
+}

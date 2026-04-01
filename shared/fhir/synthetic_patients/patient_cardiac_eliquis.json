@@ -1,0 +1,422 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "id": "patient-cardiac-eliquis",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "synthetic-005",
+        "name": [
+          {
+            "text": "William Martinez",
+            "family": "Martinez",
+            "given": ["William"]
+          }
+        ],
+        "birthDate": "1958-09-14",
+        "gender": "male"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-afib",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I48.91",
+              "display": "Unspecified atrial fibrillation"
+            }
+          ],
+          "text": "Atrial fibrillation"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "onsetDateTime": "2023-06-18"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-hypertension",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I10",
+              "display": "Essential (primary) hypertension"
+            }
+          ],
+          "text": "Hypertension"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "onsetDateTime": "2015-03-10"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-heart-failure",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I50.9",
+              "display": "Heart failure, unspecified"
+            }
+          ],
+          "text": "Congestive heart failure"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "onsetDateTime": "2022-11-05"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-warfarin",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "11289",
+              "display": "Warfarin"
+            }
+          ],
+          "text": "Warfarin"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5mg daily, adjust per INR",
+            "doseAndRate": [
+              {
+                "doseQuantity": {
+                  "value": 5,
+                  "unit": "mg"
+                }
+              }
+            ]
+          }
+        ],
+        "authoredOn": "2023-06-25",
+        "status": "active"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-metoprolol",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "6918",
+              "display": "Metoprolol"
+            }
+          ],
+          "text": "Metoprolol"
+        },
+        "dosageInstruction": [
+          {
+            "text": "50mg twice daily",
+            "doseAndRate": [
+              {
+                "doseQuantity": {
+                  "value": 50,
+                  "unit": "mg"
+                }
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "frequency": 2,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            }
+          }
+        ],
+        "authoredOn": "2023-06-25",
+        "status": "active"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-furosemide",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "4603",
+              "display": "Furosemide"
+            }
+          ],
+          "text": "Furosemide"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40mg daily",
+            "doseAndRate": [
+              {
+                "doseQuantity": {
+                  "value": 40,
+                  "unit": "mg"
+                }
+              }
+            ]
+          }
+        ],
+        "authoredOn": "2022-11-10",
+        "status": "active"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-inr",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6301-6",
+              "display": "INR in Blood by Coagulation assay"
+            }
+          ],
+          "text": "INR"
+        },
+        "valueQuantity": {
+          "value": 1.8,
+          "system": "http://unitsofmeasure.org",
+          "code": "{INR}"
+        },
+        "effectiveDateTime": "2024-12-08",
+        "status": "final",
+        "note": [
+          {
+            "text": "Target INR 2.0-3.0. Patient frequently below therapeutic range."
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {"value": 2.0},
+            "high": {"value": 3.0},
+            "text": "Therapeutic range for atrial fibrillation"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-chadsvasc",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "86274-5",
+              "display": "CHA2DS2-VASc score"
+            }
+          ],
+          "text": "CHA2DS2-VASc Score"
+        },
+        "valueInteger": 4,
+        "effectiveDateTime": "2024-12-01",
+        "status": "final",
+        "note": [
+          {
+            "text": "CHF(1) + HTN(1) + Age 65-74(1) + Male(0) + Age >=75(0) + Stroke(0) + Vascular disease(1) = 4 (High stroke risk)"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-hasbled",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "86272-9",
+              "display": "HAS-BLED score"
+            }
+          ],
+          "text": "HAS-BLED Score"
+        },
+        "valueInteger": 2,
+        "effectiveDateTime": "2024-12-01",
+        "status": "final",
+        "note": [
+          {
+            "text": "Hypertension(1) + Abnormal liver/renal(0) + Stroke(0) + Bleeding(0) + Labile INR(1) + Elderly(0) + Drugs/alcohol(0) = 2 (Moderate bleeding risk)"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-creatinine",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2160-0",
+              "display": "Creatinine [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Creatinine"
+        },
+        "valueQuantity": {
+          "value": 1.2,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "effectiveDateTime": "2024-11-28",
+        "status": "final",
+        "referenceRange": [
+          {
+            "low": {"value": 0.7},
+            "high": {"value": 1.3}
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-egfr",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "33914-3",
+              "display": "Glomerular filtration rate/1.73 sq M.predicted"
+            }
+          ],
+          "text": "eGFR"
+        },
+        "valueQuantity": {
+          "value": 62,
+          "unit": "mL/min/1.73m2",
+          "system": "http://unitsofmeasure.org",
+          "code": "mL/min/{1.73_m2}"
+        },
+        "effectiveDateTime": "2024-11-28",
+        "status": "final",
+        "referenceRange": [
+          {
+            "low": {"value": 60},
+            "text": "Stage 2 CKD - Mild reduction in kidney function"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-echocardiogram",
+        "subject": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18043-0",
+              "display": "Ejection fraction"
+            }
+          ],
+          "text": "Left Ventricular Ejection Fraction"
+        },
+        "valueQuantity": {
+          "value": 48,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "effectiveDateTime": "2024-10-20",
+        "status": "final",
+        "note": [
+          {
+            "text": "Mildly reduced systolic function"
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {"value": 55},
+            "high": {"value": 70},
+            "text": "Normal LVEF"
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "allergy-aspirin",
+        "patient": {"reference": "Patient/synthetic-005"},
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1191",
+              "display": "Aspirin"
+            }
+          ],
+          "text": "Aspirin"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "text": "GI bleeding"
+              }
+            ]
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

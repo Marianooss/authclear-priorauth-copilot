@@ -1,0 +1,44 @@
+# Medicaid Prior Authorization Criteria
+# State Medicaid plans - typically more restrictive on high-cost drugs
+
+J0173:  # Semaglutide (Ozempic)
+  description: "Semaglutide injection for type 2 diabetes"
+  required_diagnoses:
+    - "E11.9 - Type 2 diabetes mellitus"
+  required_labs:
+    - "HbA1c >= 8.5% within last 90 days"  # Highest threshold
+    - "BMI >= 30 kg/m2 OR cardiovascular disease documented"
+  required_trials:
+    - "Metformin trial >= 6 months at max tolerated dose"
+    - "Sulfonylurea trial >= 6 months"
+    - "DPP-4 inhibitor OR SGLT2 inhibitor trial >= 3 months"
+    - "Basal insulin trial >= 3 months"
+  documentation_required:
+    - "Endocrinology consult within 6 months"
+    - "Clinical notes with detailed diabetes management history"
+    - "Lab results (HbA1c, BMI, A1C trend over 12 months)"
+    - "Medication history with documented adherence"
+    - "Documentation of barriers to insulin intensification"
+  typical_approval_duration: "3 months initially, then 6 months"
+
+J1438:  # Etanercept (Enbrel)
+  description: "Etanercept injection for rheumatoid arthritis"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis"
+  required_labs:
+    - "RF positive AND anti-CCP positive"
+    - "ESR >= 28 mm/hr OR CRP >= 1.0 mg/dL"
+    - "TB screening negative within 6 months"  # More frequent than generic
+    - "Hepatitis B and C screening"
+  required_trials:
+    - "Methotrexate trial >= 6 months at 20-25mg/week"
+    - "Hydroxychloroquine trial >= 3 months"
+    - "Sulfasalazine trial >= 3 months"
+    - "Combination DMARD therapy trial documented"
+  documentation_required:
+    - "Rheumatology consult within 3 months"
+    - "Complete lab panel"
+    - "X-rays showing erosive disease"
+    - "Functional status assessment (HAQ score)"
+    - "Documentation of failure/intolerance to all required DMARDs"
+  typical_approval_duration: "6 months"

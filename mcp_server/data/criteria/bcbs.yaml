@@ -1,0 +1,83 @@
+# Blue Cross Blue Shield Prior Authorization Criteria
+# Private insurer - balanced criteria
+
+J0173:  # Semaglutide (Ozempic)
+  description: "Semaglutide injection for type 2 diabetes"
+  required_diagnoses:
+    - "E11.9 - Type 2 diabetes mellitus"
+  required_labs:
+    - "HbA1c >= 8.0% within last 90 days"
+    - "BMI >= 27 kg/m2"
+  required_trials:
+    - "Metformin trial >= 3 months"
+    - "At least one other oral agent trial >= 3 months"
+  documentation_required:
+    - "Clinical notes"
+    - "Lab results"
+    - "Medication history"
+  typical_approval_duration: "12 months"
+
+J1438:  # Etanercept (Enbrel)
+  description: "Etanercept injection for rheumatoid arthritis"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis"
+  required_labs:
+    - "RF or anti-CCP positive"
+    - "ESR or CRP elevated"
+    - "TB screening negative within 12 months"
+  required_trials:
+    - "Methotrexate trial >= 3 months"
+    - "One other DMARD trial >= 3 months"
+  documentation_required:
+    - "Rheumatology consult"
+    - "Lab results"
+    - "Medication history"
+  typical_approval_duration: "12 months"
+
+J9355:  # Trastuzumab (Herceptin)
+  description: "Trastuzumab injection for HER2+ breast cancer"
+  required_diagnoses:
+    - "C50.911 - Malignant neoplasm of breast"
+    - "HER2+ status confirmed"
+  required_labs:
+    - "HER2 testing (IHC 3+ or FISH positive)"
+    - "LVEF >= 50% within 90 days"
+    - "Tumor staging documented"
+  required_trials:
+    - "Completion or concurrent chemotherapy regimen"
+  documentation_required:
+    - "Pathology report with HER2 status"
+    - "Echocardiogram or MUGA scan"
+    - "Oncology treatment plan"
+  typical_approval_duration: "12 months"
+
+J9299:  # Nivolumab (Opdivo)
+  description: "Nivolumab injection for melanoma/NSCLC"
+  required_diagnoses:
+    - "C43 - Malignant melanoma"
+    - "C34 - Malignant neoplasm of lung"
+  required_labs:
+    - "PD-L1 expression testing (if NSCLC)"
+    - "Disease staging documented"
+  required_trials:
+    - "Prior systemic therapy (if required per indication)"
+  documentation_required:
+    - "Oncology notes"
+    - "Imaging studies"
+    - "Prior treatment history"
+  typical_approval_duration: "6 months"
+
+J9035:  # Bevacizumab (Avastin)
+  description: "Bevacizumab injection for colorectal/lung cancer"
+  required_diagnoses:
+    - "C18 - Malignant neoplasm of colon"
+    - "C34 - Malignant neoplasm of lung"
+  required_labs:
+    - "Blood pressure < 160/100 mmHg"
+    - "No recent bleeding events"
+  required_trials:
+    - "Concurrent with chemotherapy regimen"
+  documentation_required:
+    - "Oncology treatment plan"
+    - "Cardiac clearance if indicated"
+  typical_approval_duration: "6 months"

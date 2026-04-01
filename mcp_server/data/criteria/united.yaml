@@ -1,0 +1,34 @@
+# United Healthcare Prior Authorization Criteria
+# Private insurer - moderate to lenient criteria
+
+J0173:  # Semaglutide (Ozempic)
+  description: "Semaglutide injection for type 2 diabetes"
+  required_diagnoses:
+    - "E11.9 - Type 2 diabetes mellitus"
+  required_labs:
+    - "HbA1c >= 7.5% within last 90 days"
+    - "BMI >= 27 kg/m2 OR cardiovascular disease"
+  required_trials:
+    - "Metformin trial >= 3 months OR documented contraindication"
+    - "One additional oral agent trial >= 3 months"
+  documentation_required:
+    - "Clinical notes"
+    - "Lab results"
+    - "Medication history OR contraindication documentation"
+  typical_approval_duration: "12 months"
+
+J1438:  # Etanercept (Enbrel)
+  description: "Etanercept injection for rheumatoid arthritis"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis"
+  required_labs:
+    - "RF or anti-CCP positive"
+    - "TB screening negative"
+  required_trials:
+    - "Methotrexate trial >= 3 months OR contraindication"
+    - "One other DMARD trial OR contraindication"
+  documentation_required:
+    - "Specialist note"
+    - "Lab results"
+    - "Treatment history"
+  typical_approval_duration: "12 months"

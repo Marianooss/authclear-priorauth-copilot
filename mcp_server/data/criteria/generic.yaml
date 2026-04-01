@@ -1,0 +1,197 @@
+# Generic Prior Authorization Criteria
+# Applies when payer-specific criteria not available
+
+J0173:  # Semaglutide (Ozempic)
+  description: "Semaglutide injection for type 2 diabetes"
+  required_diagnoses:
+    - "E11.9 - Type 2 diabetes mellitus"
+    - "E11.0 - Type 2 diabetes mellitus with hyperosmolarity"
+  required_labs:
+    - "HbA1c >= 7.5% within last 90 days"
+    - "BMI documented"
+  required_trials:
+    - "Metformin trial >= 3 months"
+    - "Second oral agent trial >= 3 months (Sulfonylurea, DPP-4 inhibitor, or SGLT2 inhibitor)"
+  documentation_required:
+    - "Clinical notes documenting diabetes management"
+    - "Lab results (HbA1c, BMI)"
+    - "Medication history showing previous trials"
+  typical_approval_duration: "6 months"
+
+J1438:  # Etanercept (Enbrel) - TNF inhibitor
+  description: "Etanercept injection for rheumatoid arthritis"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis"
+    - "M06.9 - Rheumatoid arthritis, unspecified"
+  required_labs:
+    - "RF or anti-CCP positive"
+    - "ESR or CRP elevated"
+    - "TB screening negative within 12 months"
+  required_trials:
+    - "Methotrexate trial >= 3 months"
+    - "At least one other DMARD trial >= 3 months"
+  documentation_required:
+    - "Rheumatology consult note"
+    - "Lab results (RF, anti-CCP, ESR/CRP)"
+    - "TB screening results"
+    - "Medication history"
+  typical_approval_duration: "12 months"
+
+J1745:  # Infliximab (Remicade)
+  description: "Infliximab infusion for inflammatory conditions"
+  required_diagnoses:
+    - "M05.9 - Rheumatoid arthritis"
+    - "K50.90 - Crohn's disease"
+    - "L40.0 - Psoriasis vulgaris"
+  required_labs:
+    - "TB screening negative within 12 months"
+    - "Hepatitis B screening"
+  required_trials:
+    - "Conventional therapy trial >= 3 months"
+  documentation_required:
+    - "Specialist consultation note"
+    - "Lab results"
+    - "Previous treatment history"
+  typical_approval_duration: "12 months"
+
+J2323:  # Natalizumab (Tysabri)
+  description: "Natalizumab infusion for multiple sclerosis"
+  required_diagnoses:
+    - "G35 - Multiple sclerosis"
+  required_labs:
+    - "MRI results showing active disease"
+    - "JC virus antibody status"
+  required_trials:
+    - "At least one disease-modifying therapy trial"
+  documentation_required:
+    - "Neurology consult note"
+    - "MRI results"
+    - "Previous medication history"
+  typical_approval_duration: "6 months"
+
+J0897:  # Denosumab (Prolia)
+  description: "Denosumab injection for osteoporosis"
+  required_diagnoses:
+    - "M81.0 - Postmenopausal osteoporosis"
+  required_labs:
+    - "DEXA scan showing T-score <= -2.5"
+    - "Serum calcium level"
+    - "Vitamin D level"
+  required_trials:
+    - "Oral bisphosphonate trial or contraindication documented"
+  documentation_required:
+    - "DEXA scan results"
+    - "Lab results"
+    - "Previous treatment history or contraindications"
+  typical_approval_duration: "12 months"
+
+J9355:  # Trastuzumab (Herceptin)
+  description: "Trastuzumab injection for HER2-positive breast cancer"
+  required_diagnoses:
+    - "C50 - Malignant neoplasm of breast"
+    - "HER2-positive status confirmed"
+  required_labs:
+    - "HER2 testing (IHC 3+ or FISH amplification ratio >= 2.0)"
+    - "Left ventricular ejection fraction (LVEF) >= 50%"
+    - "Tumor histology and staging"
+    - "ER/PR status"
+  required_trials:
+    - "Chemotherapy completion or concurrent administration"
+    - "Surgery (if applicable to treatment plan)"
+  documentation_required:
+    - "Pathology report with HER2 testing results"
+    - "Echocardiogram or MUGA scan within 90 days"
+    - "Oncology treatment plan"
+    - "Surgical pathology (if post-operative)"
+  typical_approval_duration: "12 months (adjuvant) or per treatment cycle (metastatic)"
+
+J9299:  # Nivolumab (Opdivo)
+  description: "Nivolumab injection for melanoma, NSCLC, RCC"
+  required_diagnoses:
+    - "C43 - Malignant melanoma"
+    - "C34 - Malignant neoplasm of bronchus and lung"
+    - "C64 - Malignant neoplasm of kidney"
+  required_labs:
+    - "PD-L1 expression testing (if NSCLC)"
+    - "Tumor staging documented"
+    - "Performance status assessment"
+  required_trials:
+    - "Platinum-based chemotherapy (if NSCLC)"
+    - "Prior systemic therapy (per indication)"
+  documentation_required:
+    - "Oncology consult note"
+    - "Pathology/biopsy results"
+    - "Imaging studies"
+    - "Prior treatment history"
+  typical_approval_duration: "6 months"
+
+J9035:  # Bevacizumab (Avastin)
+  description: "Bevacizumab injection for colorectal, lung, glioblastoma"
+  required_diagnoses:
+    - "C18-C20 - Malignant neoplasm of colon/rectum"
+    - "C34 - Malignant neoplasm of bronchus and lung"
+    - "C71 - Malignant neoplasm of brain"
+  required_labs:
+    - "Blood pressure monitoring (< 160/100 mmHg)"
+    - "Urinalysis for proteinuria"
+    - "CBC with platelets"
+  required_trials:
+    - "Concurrent with chemotherapy regimen"
+  documentation_required:
+    - "Oncology treatment plan"
+    - "Recent blood pressure readings"
+    - "Cardiac assessment if high-risk"
+  typical_approval_duration: "6 months"
+
+J9271:  # Pembrolizumab (Keytruda)
+  description: "Pembrolizumab injection for melanoma, NSCLC, HNSCC"
+  required_diagnoses:
+    - "C43 - Malignant melanoma"
+    - "C34 - Malignant neoplasm of bronchus and lung"
+    - "C00-C14 - Malignant neoplasm of head/neck"
+  required_labs:
+    - "PD-L1 expression (TPS >= 50% for first-line NSCLC)"
+    - "Tumor staging"
+    - "MSI-H/dMMR status (if applicable)"
+  required_trials:
+    - "Prior platinum-based chemotherapy (if required per indication)"
+  documentation_required:
+    - "Pathology report with biomarker testing"
+    - "Oncology treatment plan"
+    - "Prior treatment documentation"
+  typical_approval_duration: "6 months"
+
+J7637:  # Tiotropium (Spiriva Respimat)
+  description: "Tiotropium inhalation solution for COPD"
+  required_diagnoses:
+    - "J44 - Chronic obstructive pulmonary disease"
+  required_labs:
+    - "Spirometry showing FEV1 < 60% predicted"
+    - "FEV1/FVC ratio < 0.70"
+  required_trials:
+    - "ICS/LABA combination therapy >= 3 months"
+    - "Documented COPD exacerbations (>= 2 in past year)"
+  documentation_required:
+    - "Pulmonary function tests"
+    - "Clinical notes documenting exacerbations"
+    - "Medication history"
+  typical_approval_duration: "12 months"
+
+J0490:  # Belimumab (Benlysta)
+  description: "Belimumab injection for systemic lupus erythematosus"
+  required_diagnoses:
+    - "M32 - Systemic lupus erythematosus"
+  required_labs:
+    - "Positive ANA (antinuclear antibody)"
+    - "Elevated anti-dsDNA antibodies"
+    - "Low complement levels (C3, C4)"
+    - "Proteinuria assessment (if lupus nephritis)"
+  required_trials:
+    - "Standard immunosuppressive therapy >= 6 months"
+    - "Hydroxychloroquine + corticosteroids or other immunosuppressant"
+  documentation_required:
+    - "Rheumatology consult note"
+    - "Lab results (ANA, anti-dsDNA, complement, urinalysis)"
+    - "SLE disease activity assessment (SLEDAI score)"
+    - "Previous treatment history"
+  typical_approval_duration: "12 months"
