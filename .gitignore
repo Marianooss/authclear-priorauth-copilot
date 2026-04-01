@@ -82,3 +82,6 @@ node_modules/
 *.bak
 *.swp
 .temp/
+
+# Synthea JAR (too large for GitHub)
+synthea_temp/
