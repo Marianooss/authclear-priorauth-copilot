@@ -23,6 +23,7 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 COPY a2a_agent/ ./a2a_agent/
 COPY shared/ ./shared/
+COPY mcp_server/ ./mcp_server/
 
 RUN useradd -r -u 1001 authclear
 USER authclear
