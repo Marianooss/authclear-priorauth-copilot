@@ -10,6 +10,7 @@ from contextlib import asynccontextmanager
 import structlog
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from a2a_agent.config import settings
 from a2a_agent.models import SendTaskRequest, SendTaskResponse, Task
@@ -60,6 +61,15 @@ app = FastAPI(
     description="A2A agent for prior authorization generation with human-in-the-loop",
     version="1.0.0",
     lifespan=lifespan,
+)
+
+# Add CORS middleware for Prompt Opinion marketplace
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for hackathon/marketplace
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
