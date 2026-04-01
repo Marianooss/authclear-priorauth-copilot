@@ -77,6 +77,8 @@ app.add_middleware(
 
 
 @app.get("/.well-known/agent.json")
+@app.head("/.well-known/agent.json")
+@app.options("/.well-known/agent.json")
 async def agent_card():
     """
     Get AgentCard.
