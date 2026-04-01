@@ -19,11 +19,20 @@ def get_agent_card() -> dict:
 
     Spec: A2A protocol requires this at /.well-known/agent.json
     """
+    # Determine agent URL based on environment
+    # In production, use Railway domain; in dev, use localhost
+    if "railway.app" in settings.mcp_server_url:
+        # Production: use the A2A Agent Railway URL
+        agent_url = "https://gallant-passion-production.up.railway.app"
+    else:
+        # Development: use localhost
+        agent_url = f"http://localhost:{settings.port_agent}"
+
     return {
         "name": "AuthClear Prior Auth Copilot",
         "description": "Reads a FHIR R4 patient bundle and generates a complete, evidence-backed prior authorization package with gap analysis and confidence scoring. Human-in-the-loop: outputs are always physician-review drafts, never auto-approvals.",
         "version": "2.0.0",
-        "url": settings.mcp_server_url.replace(":8001", ":8000"),  # Agent URL (not MCP URL)
+        "url": agent_url,
         "capabilities": {
             "streaming": False,
             "pushNotifications": False,
